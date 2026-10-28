@@ -45,9 +45,7 @@ CV <- foreach(k = 1:length(sCandidates), .combine = 'c') %dopar% {
   bottomCV = rep(0, n)
   
   for(i in 1:n) {
- #   diff_angles <- angleData[i] - angleData[-i]
     YData_subset <- YData[-i]
-  #  temp_vec1 <- drop(g_terms %*% cos(outer(nu_seq, diff_angles)))
     temp_vec1 <- drop(g_terms %*% cos(outer(nu_seq, diffMat[,i])))
      temp_vec2 <- 1 + 2 * temp_vec1
     bottomCV[i] <- sum(temp_vec2)
